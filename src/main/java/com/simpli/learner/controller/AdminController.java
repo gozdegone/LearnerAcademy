@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -47,10 +48,9 @@ public class AdminController {
     return "admin/subjects";
   }
 
-  @GetMapping("/classStudents")
-  public String findStudentsInClass(Model model, HttpServletRequest req) {
+  @GetMapping("/classStudents/{id}")
+  public String findStudentsInClass(Model model, @PathVariable(name = "id") Integer classId) {
     try {
-      int classId = Integer.parseInt(req.getParameter("id"));
       model.addAttribute("students", studentDao.findStudentsByClass(classId));
       return "admin/students";
     } catch (Exception e) {

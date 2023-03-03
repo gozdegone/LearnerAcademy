@@ -18,4 +18,3 @@ As a Full Stack Developer, design and develop a backend administrative portal fo
 You can use Docker to create MySql database:
 ## Mysql Docker Commands:
 * docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=password -d mysql
-* 

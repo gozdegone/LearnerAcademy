@@ -48,7 +48,7 @@
           <td><span th:text="${class.subject}"> </span></td>
           <td><span th:text="${class.teacher}"> </span></td>
           <td><span th:text="${class.time}"> </span></td>
-          <td><a th:href="@{|/admin/classStudents|}">List</a></td>
+          <td><a th:href="@{|/admin/classStudents/${class.id}|}">List</a></td>
         </tr>
 
       </table>
