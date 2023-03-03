@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>List of Students</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:fragment="left-menu">
+</div>
+<div th:fragment="left-menu">
+  <div sec:authorize="isAuthenticated()">
+    <p sec:authorize="hasAuthority('ADMIN')">
+    <div class="sidenav">
+      <h3 id="logo">
+        Learning Academy Menu
+      </h3>
+      <a class="bar-item" th:href="@{|/admin/classes|}">Class List</a>
+      <a class="bar-item" th:href="@{|/admin/teachers|}">Teacher List</a>
+      <a class="bar-item" th:href="@{|/admin/subjects|}">Subject List</a>
+      <a class="bar-item" th:href="@{|/admin/students|}">Student List</a>
+      <a class="bar-item" th:href="@{/logout}">Log out</a>
+    </div>
+    </p>
+  </div>
+</div>
+<div id="page">
+  <div id="wrapper">
+    <div id="header">
+      <h3>Student List</h3>
+    </div>
+  </div>
+
+  <div id="container">
+    <div id="content">
+      <table>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>ClassId</th>
+        </tr>
+        <tr th:each="student : ${students}">
+          <td><span th:text="${student.firstName}"> </span></td>
+          <td><span th:text="${student.lastName}"> </span></td>
+          <td><span th:text="${student.age}"> </span></td>
+          <td><span th:text="${student.classId}"> </span></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

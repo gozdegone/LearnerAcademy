@@ -1,0 +1,36 @@
+<!--homepage.html-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Learner Academy</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<h2>Welcome to Learner Academy Admin Homepage</h2>
+<p sec:authorize="hasRole('ROLE_ANONYMOUS')">User is not logged in</p>
+<p sec:authorize="hasRole('ADMIN')">Admin Menu</p>
+
+<div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+  <p><a th:href="@{|/login|}" th:text="'Log in'"></a></p>
+</div>
+
+<div sec:authorize="isAuthenticated()">
+  <p>Logged as: <span sec:authentication="name"></span></p>
+  <p>Has role: <span sec:authentication="authorities"></span></p>
+  <p sec:authorize="hasAuthority('ADMIN')">
+    <div class="sidenav">
+      <h3 id="logo">
+        Learning Academy Menu
+      </h3>
+      <a class="bar-item" th:href="@{|/admin/classes|}">Class List</a>
+      <a class="bar-item" th:href="@{|/admin/teachers|}">Teacher List</a>
+      <a class="bar-item" th:href="@{|/admin/subjects|}">Subject List</a>
+      <a class="bar-item" th:href="@{|/admin/students|}">Student List</a>
+      <a class="bar-item" th:href="@{/logout}">Log out</a>
+
+    </div>
+  </p>
+</div>
+
+</body>
+</html>

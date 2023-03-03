@@ -1,0 +1,25 @@
+<!--homepage.html-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Learner Academy</title>
+</head>
+<body>
+<h2>Welcome to Learner Academy Homepage</h2>
+<p sec:authorize="hasRole('ROLE_ANONYMOUS')">Please login</p>
+<p sec:authorize="hasRole('ADMIN')">Welcome admin</p>
+
+<div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+  <p><a th:href="@{|/login|}" th:text="'Log in'"></a></p>
+</div>
+
+<div sec:authorize="isAuthenticated()">
+  <p>Logged as: <span sec:authentication="name"></span></p>
+  <p>Has role: <span sec:authentication="authorities"></span></p>
+  <p sec:authorize="hasAuthority('ADMIN')"><a th:href="@{|/admin/dashboard|}"
+                                              th:text="'Admin Dashboard'"></a></p>
+  <a th:href="@{/logout}">Log out</a>
+</div>
+
+</body>
+</html>

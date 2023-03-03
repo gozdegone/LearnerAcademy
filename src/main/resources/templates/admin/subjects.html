@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>List of Subjects</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:fragment="left-menu">
+</div>
+<div th:fragment="left-menu">
+  <div sec:authorize="isAuthenticated()">
+    <p sec:authorize="hasAuthority('ADMIN')">
+    <div class="sidenav">
+      <h3 id="logo">
+        Learning Academy Menu
+      </h3>
+      <a class="bar-item" th:href="@{|/admin/classes|}">Class List</a>
+      <a class="bar-item" th:href="@{|/admin/teachers|}">Teacher List</a>
+      <a class="bar-item" th:href="@{|/admin/subjects|}">Subject List</a>
+      <a class="bar-item" th:href="@{|/admin/students|}">Student List</a>
+      <a class="bar-item" th:href="@{/logout}">Log out</a>
+    </div>
+    </p>
+  </div>
+</div>
+<div id="page">
+  <div id="wrapper">
+    <div id="header">
+      <h3>Subject List</h3>
+    </div>
+  </div>
+
+  <div id="container">
+    <div id="content">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Code</th>
+        </tr>
+        <tr th:each="subject : ${subjects}">
+          <td><span th:text="${subject.name}"> </span></td>
+          <td><span th:text="${subject.code}"> </span></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
